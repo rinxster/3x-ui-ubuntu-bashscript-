@@ -2,6 +2,8 @@
 echo '########################################'
 echo 'Change your default root password!'
 echo '########################################'
+
+#read -p "Please set up your password:" config_password
 sudo passwd root
 
 #install updates and required programs
