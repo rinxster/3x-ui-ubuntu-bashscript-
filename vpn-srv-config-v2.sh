@@ -52,6 +52,7 @@ echo '########################################'
 sudo sed -i -e 's/#Port 22/Port 2222/g' /etc/ssh/sshd_config && service sshd reload 
 
 #Disable root login via ssh
+sudo sed -i 's/#\?\(PermitRootLogin\s*\).*$/\1 no/' /etc/ssh/sshd_config
 
 # pause to see intermediate result. non root user setup and disable root login
 echo '########################################'
