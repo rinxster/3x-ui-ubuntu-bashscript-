@@ -58,7 +58,7 @@ sudo sed -i -e 's/#Port 22/Port 2222/g' /etc/ssh/sshd_config && service sshd rel
 echo '########################################'
 read -n1 -s -r -p $'Everything is ready to proceed with non root user setup. Press space to continue...\n' key
 echo '########################################'
-nonroot=0dmin4eg 
+nonroot=0dmin4eg2
 sudo useradd -m -c "$nonroot" $nonroot -s /bin/bash
 usermod -aG sudo $nonroot 
 read -s -p "Enter the new password for $nonroot: " password
