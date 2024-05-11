@@ -5,7 +5,7 @@ echo 'Change your default root password!'
 echo '########################################'
 
 #read -p "Please set up your password:" config_password
-read -s -p "Enter the new password for nonroot user and root: " password
+read -s -p "Enter the new password for $nonroot user and root: " password
 echo "root:$password" | sudo chpasswd
 echo "Password set successfully for root."
 
@@ -56,13 +56,12 @@ sudo sed -i -e 's/#Port 22/Port 2222/g' /etc/ssh/sshd_config && service sshd rel
 # pause to see intermediate result. non root user setup and disable root login
 #set the same password as or root
 
-echo '########################################'
-read -n1 -s -r -p $'Everything is ready to proceed with non root user setup. Press space to continue...\n' key
-echo '########################################'
-nonroot=0dmin4eg2
+#echo '########################################'
+#read -n1 -s -r -p $'Everything is ready to proceed with non root user setup. Press space to continue...\n' key
+#echo '########################################'
+
 sudo useradd -m -c "$nonroot" $nonroot -s /bin/bash
 usermod -aG sudo $nonroot 
-#read -s -p "Enter the new password for $nonroot: " password
 echo "$nonroot:$password" | sudo chpasswd
 echo "Password set successfully for $nonroot."
 
