@@ -1,1 +1,1 @@
-# 3x-ui-ubuntu-bashscript-
+# 3x-ui-ubuntu-bashscript
