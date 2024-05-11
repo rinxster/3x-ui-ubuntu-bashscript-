@@ -34,6 +34,10 @@ sudo ufw allow 2222
 sudo ufw allow 443
 sudo ufw allow 50444
 
+# disable ICMP from aninymizer detectors
+sudo sed -i '/ufw-before-input.*icmp/s/ACCEPT/DROP/g' /etc/ufw/before.rules 
+sudo ufw reload
+
 yes | sudo ufw enable
 #sudo ufw status verbose
 
@@ -43,9 +47,11 @@ sudo update-grub
 
 # pause to see intermediate result.
 echo '########################################'
-read -n1 -s -r -p $'Everything is ready to change port to 2222. Press space to continue...\n' key
+read -n1 -s -r -p $'Everything is ready to change SSH port to 2222. Press space to continue...\n' key
 echo '########################################'
-sudo ufw allow 2222 && sudo sed -i -e 's/#Port 22/Port 2222/g' /etc/ssh/sshd_config && service sshd reload && sudo ufw status
+sudo sed -i -e 's/#Port 22/Port 2222/g' /etc/ssh/sshd_config && service sshd reload 
+
+#Disable root login via ssh
 
 # pause to see intermediate result. non root user setup and disable root login
 echo '########################################'
