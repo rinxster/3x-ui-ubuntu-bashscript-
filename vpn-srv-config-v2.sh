@@ -62,7 +62,7 @@ echo '########################################'
 nonroot=0dmin4eg2
 sudo useradd -m -c "$nonroot" $nonroot -s /bin/bash
 usermod -aG sudo $nonroot 
-read -s -p "Enter the new password for $nonroot: " password
+#read -s -p "Enter the new password for $nonroot: " password
 echo "$nonroot:$password" | sudo chpasswd
 echo "Password set successfully for $nonroot."
 
