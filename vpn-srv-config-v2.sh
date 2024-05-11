@@ -1,4 +1,5 @@
 # !/bin/bash
+nonroot=0dmin4eg2
 echo '########################################'
 echo 'Change your default root password!'
 echo '########################################'
