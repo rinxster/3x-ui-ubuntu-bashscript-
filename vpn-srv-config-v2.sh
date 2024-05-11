@@ -31,7 +31,9 @@ sudo ufw default allow outgoing
 sudo ufw allow ssh
 sudo ufw allow 22
 sudo ufw allow 2222
-sudo ufw allow 1194
+sudo ufw allow 443
+sudo ufw allow 50444
+
 yes | sudo ufw enable
 #sudo ufw status verbose
 
