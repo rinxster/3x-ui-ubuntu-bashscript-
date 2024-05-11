@@ -51,25 +51,23 @@ read -n1 -s -r -p $'Everything is ready to change SSH port to 2222. Press space 
 echo '########################################'
 sudo sed -i -e 's/#Port 22/Port 2222/g' /etc/ssh/sshd_config && service sshd reload 
 
-#Disable root login via ssh
-sudo sed -i 's/#\?\(PermitRootLogin\s*\).*$/\1 no/' /etc/ssh/sshd_config
-
 # pause to see intermediate result. non root user setup and disable root login
+#set the same password as or root
+
 echo '########################################'
 read -n1 -s -r -p $'Everything is ready to proceed with non root user setup. Press space to continue...\n' key
 echo '########################################'
-nonroot=0dmin4eg && sudo useradd -m -c "$nonroot" $nonroot -s /bin/bash && usermod -aG sudo $nonroot && sudo passwd $nonroot && sudo sed -i 's/PermitRootLogin yes/PermitRootLogin no/g' /etc/ssh/sshd_config && sudo service ssh reload
+nonroot=0dmin4eg 
+sudo useradd -m -c "$nonroot" $nonroot -s /bin/bash
+usermod -aG sudo $nonroot && sudo passwd $nonroot
+sudo sed -i 's/PermitRootLogin yes/PermitRootLogin no/g' /etc/ssh/sshd_config
+sudo service ssh reload
 
-# pause to see intermediate result. Everything is ready to proceed with Shadowsocks installlation
-echo '########################################'
-read -n1 -s -r -p $'Everything is ready to proceed with Shadowsocks installlation. Press space to continue...\n' key
-echo '########################################'
-#download openvpn installation script and install openvpn on server
-wget https://raw.githubusercontent.com/unixhostpro/shadowsocks-simple-install/master/shadowsocks-simple-install.sh && chmod +x shadowsocks-simple-install.sh
-./shadowsocks-simple-install.sh | grep "URL:" | tee key_shadowsocks.txt
 
-# pause to see intermediate result. Everything is ready to proceed with OpenVPN installlation
-# echo '########################################'
-# read -n1 -s -r -p $'Everything is ready. Press space to continue and server will restart in 1 minute. Otherwise run "shutdown -c" to cancel restart\n' key
-# echo '########################################'
-# sudo shutdown -r +1
+# pause to see intermediate result. Everything is ready to proceed with 3x-UI installlation
+echo '########################################'
+read -n1 -s -r -p $'Everything is ready to proceed with 3X-UI installlation. Press space to continue...\n' key
+echo '########################################'
+#download 3x-UI installation script and install 3x-UI on server
+bash <(curl -Ls https://raw.githubusercontent.com/mhsanaei/3x-ui/master/install.sh)
+
