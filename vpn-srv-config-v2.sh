@@ -4,7 +4,9 @@ echo 'Change your default root password!'
 echo '########################################'
 
 #read -p "Please set up your password:" config_password
-sudo passwd root
+read -s -p "Enter the new password for nonroot user and root: " password
+echo "root:$password" | sudo chpasswd
+echo "Password set successfully for root."
 
 #install updates and required programs
 yes | sudo apt update && yes | sudo apt upgrade
@@ -15,7 +17,6 @@ yes | sudo apt install unattended-upgrades && yes | sudo apt install update-noti
 sudo echo -e "APT::Periodic::Update-Package-Lists \"1\";\nAPT::Periodic::Unattended-Upgrade \"1\";\n" > /etc/apt/apt.conf.d/20auto-upgrades
 sudo systemctl restart unattended-upgrades
 sudo systemctl enable unattended-upgrades
-
 
 #sudo systemctl status unattended-upgrades
 
@@ -59,10 +60,13 @@ read -n1 -s -r -p $'Everything is ready to proceed with non root user setup. Pre
 echo '########################################'
 nonroot=0dmin4eg 
 sudo useradd -m -c "$nonroot" $nonroot -s /bin/bash
-usermod -aG sudo $nonroot && sudo passwd $nonroot
+usermod -aG sudo $nonroot 
+read -s -p "Enter the new password for $nonroot: " password
+echo "$nonroot:$password" | sudo chpasswd
+echo "Password set successfully for $nonroot."
+
 sudo sed -i 's/PermitRootLogin yes/PermitRootLogin no/g' /etc/ssh/sshd_config
 sudo service ssh reload
-
 
 # pause to see intermediate result. Everything is ready to proceed with 3x-UI installlation
 echo '########################################'
@@ -70,4 +74,3 @@ read -n1 -s -r -p $'Everything is ready to proceed with 3X-UI installlation. Pre
 echo '########################################'
 #download 3x-UI installation script and install 3x-UI on server
 bash <(curl -Ls https://raw.githubusercontent.com/mhsanaei/3x-ui/master/install.sh)
-
