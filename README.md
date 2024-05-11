@@ -1,6 +1,7 @@
 # 3x-ui-ubuntu-bashscript
 
 This short bash script patches server + installs and configures ufw, fail2ban and open vpn server. Also it configures and sets up regular  automatic updates. Just copy paste command below and run it on your vanilla Ubuntu server that is just deployed on your cloud to make it 3X-UI server.
+Important: script alsoe creatres "nonroot" user - please see details in shell script.
 **Installation instructions:**
 1. Open your linux terminal as root.
 2. Copy and paste following script and enjoy!
