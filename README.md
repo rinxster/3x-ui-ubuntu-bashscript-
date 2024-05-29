@@ -7,8 +7,13 @@ Important: script also creatres "nonroot" user - please see details in shell scr
 **Installation instructions:**
 1. Open your linux terminal as root.
 2. Copy and paste following script and enjoy!
+***new server***
 ```
 sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1 && sudo sysctl -w net.ipv6.conf.default.disable_ipv6=1 && sudo sysctl -w net.ipv6.conf.lo.disable_ipv6=1 && sudo wget https://raw.githubusercontent.com/rinxster/3x-ui-ubuntu-bashscript/main/vpn-srv-config-v3.sh -O vpn-srv-config-v3.sh && sudo chmod +x vpn-srv-config-v3.sh && sudo bash vpn-srv-config-v3.sh
+```
+***reconfigure old server***
+```
+sudo wget https://raw.githubusercontent.com/rinxster/3x-ui-ubuntu-bashscript/main/vpn-srv-config-v3.sh -O vpn-srv-config-v3.sh && sudo chmod +x vpn-srv-config-v3.sh && sudo bash vpn-srv-config-v3.sh
 ```
 My instruction for VLESS clients: [https://taplink.cc/familyvpn](https://taplink.cc/familyvpn)
 All other Hiddify clients are here: [Hiddify clients] (https://github.com/hiddify/hiddify-next?tab=readme-ov-file)
