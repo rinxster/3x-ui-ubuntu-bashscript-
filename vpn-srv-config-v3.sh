@@ -39,7 +39,7 @@ sudo ufw allow 22
 sudo ufw allow 2222
 sudo ufw allow 443
 sudo ufw allow 50444
-# disable ICMP in UFW from aninymizer detectors
+# disable ICMP in UFW from anonymizer detectors
 sudo sed -i '/ufw-before-input.*icmp/s/ACCEPT/DROP/g' /etc/ufw/before.rules 
 yes | sudo ufw enable
 sudo ufw reload
